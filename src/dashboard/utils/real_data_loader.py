@@ -152,7 +152,7 @@ def load_all_real_data() -> Dict[str, pd.DataFrame]:
         'gdp': 'GDP',
         'gdp_growth': 'A191RL1Q225SBEA',  # Real GDP, Percent Change from Year Ago
         'unemployment_rate': 'UNRATE',  # Unemployment Rate
-        'cpi_inflation': 'CPIAUCSL',  # Consumer Price Index
+        'cpi_level': 'CPIAUCSL',  # Consumer Price Index for All Urban Consumers: All Items
         'federal_funds_rate': 'FEDFUNDS',
         'consumer_sentiment': 'UMCSENT',
         'industrial_production': 'INDPRO',
@@ -162,6 +162,10 @@ def load_all_real_data() -> Dict[str, pd.DataFrame]:
     
     primary_data = loader.load_fred_data(fred_primary)
     if not primary_data.empty:
+        # Calculate CPI inflation rate from CPI level
+        if 'cpi_level' in primary_data.columns:
+            primary_data['cpi_inflation'] = primary_data['cpi_level'].pct_change(periods=12) * 100  # 12-month inflation rate
+            primary_data = primary_data.drop('cpi_level', axis=1)  # Remove the level data
         datasets['primary_indicators'] = primary_data
     
     # Financial Markets from Yahoo Finance
