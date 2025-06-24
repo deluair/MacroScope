@@ -60,6 +60,12 @@ cd MacroScope
 # Install dependencies
 pip install -r requirements.txt
 
+# Configure API keys (REQUIRED for real-time data)
+# Create .env file and add your API keys:
+# FRED_API_KEY=your_actual_fred_key
+# BLS_API_KEY=your_actual_bls_key
+# etc.
+
 # Generate synthetic data (optional)
 python -m src.data_generation.synthetic_data_generator
 
@@ -152,13 +158,17 @@ src/data_generation/
 
 ### **API Configuration**
 ```python
-# Configured in config/settings.py
-FRED_API_KEY = "3a489b24c1a0898c157ed702c70c529f"
-BLS_API_KEY = "b155c91d886645b98e0d453434f16774"  
-CENSUS_API_KEY = "75ca6118b0a4b7c1648255473c89f49c3f635a57"
-EIA_API_KEY = "mCDQSBcgcodgzpeuKgoZUXOdzNLXwRxGIL57T4g2"
-NOAA_TOKEN = "xGuxpvhZhtWCtALWDYSbOzyHyUCDiRJs"
-COMTRADE_API_KEY = "4bb037cbddd84bdaa9e40816f90592ae"
+# Configure your API keys in config/settings.py or environment variables
+FRED_API_KEY = "your_fred_api_key_here"
+BLS_API_KEY = "your_bls_api_key_here"  
+CENSUS_API_KEY = "your_census_api_key_here"
+EIA_API_KEY = "your_eia_api_key_here"
+NOAA_TOKEN = "your_noaa_token_here"
+COMTRADE_API_KEY = "your_comtrade_api_key_here"
+
+# Or use environment variables (recommended):
+# export FRED_API_KEY="your_actual_key"
+# export BLS_API_KEY="your_actual_key"
 ```
 
 ---

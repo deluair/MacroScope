@@ -14,6 +14,7 @@ from src.dashboard.utils.data_processing import load_all_data
 from src.dashboard.components.executive_summary import display_executive_summary
 from src.dashboard.components.deep_dive_analytics import display_deep_dive_analytics
 from src.dashboard.components.risk_assessment import display_risk_assessment
+from src.dashboard.components.investment_intelligence import render_investment_intelligence
 from src.dashboard.utils.report_generator import generate_markdown_report, generate_html_report
 
 # Custom CSS for professional styling
@@ -267,7 +268,7 @@ def main():
         st.markdown("#### 🧭 Navigation")
         page = st.radio(
             "Select Analysis View:",
-            ("📊 Executive Summary", "🔍 Deep Dive Analytics", "⚠️ Risk Assessment"),
+            ("📊 Executive Summary", "🔍 Deep Dive Analytics", "⚠️ Risk Assessment", "🎯 Investment Intelligence"),
             help="Choose the analysis perspective you want to explore"
         )
         
@@ -323,7 +324,8 @@ def main():
     page_mapping = {
         "📊 Executive Summary": "Executive Summary",
         "🔍 Deep Dive Analytics": "Deep Dive Analytics", 
-        "⚠️ Risk Assessment": "Risk Assessment"
+        "⚠️ Risk Assessment": "Risk Assessment",
+        "🎯 Investment Intelligence": "Investment Intelligence"
     }
     
     selected_page = page_mapping[page]
@@ -341,6 +343,8 @@ def main():
         st.markdown("## ⚠️ Risk Assessment")
         st.markdown("*Economic risk analysis and scenario modeling*")
         display_risk_assessment(data)
+    elif selected_page == "Investment Intelligence":
+        render_investment_intelligence(data, use_real_data)
     
     # Professional footer
     st.markdown("""
