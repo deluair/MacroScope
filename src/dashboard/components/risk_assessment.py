@@ -360,13 +360,6 @@ def display_risk_assessment(baseline_data: dict[str, pd.DataFrame]):
                 <div class="metric-card">
                     <h4>🎯 Key Insights</h4>
                     <p>{risk_interpretation}</p>
-                    
-                    <h5>📊 Impact Details:</h5>
-                    <ul>
-                        <li><strong>Absolute Change:</strong> {risk_metrics['absolute_change']:+.2f}</li>
-                        <li><strong>Relative Change:</strong> {risk_metrics['percentage_change']:+.1f}%</li>
-                        <li><strong>Volatility Impact:</strong> {risk_metrics['volatility_change_pct']:+.1f}%</li>
-                    </ul>
                 </div>
                 """, unsafe_allow_html=True)
                 
